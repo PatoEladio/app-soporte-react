@@ -5,7 +5,7 @@ function actualizarEmpleado(anio, datos) {
         .then(res => {
             return res;
         }).catch(err => {
-            console.log(err);
+            return err;
         })
 }
 

@@ -8,6 +8,13 @@ function useEmpleado() {
 
     const buscarEmpleado = async (empleado) => {
         const loading = toast.loading("Buscando...");
+        setColaboradorObtenido({
+            msg: "",
+            nombreEmpleado: "",
+            runEmpleado: "",
+            empleado: []
+        });
+        
         const buscarEmpleado = await obtenerEmpleadoPorRut(empleado);
         if (buscarEmpleado.status == 200) {
             const { data } = buscarEmpleado;

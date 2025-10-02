@@ -1,13 +1,33 @@
-import { Box, Button, CloseButton, Dialog, Field, HStack, IconButton, Input, Text, VStack } from "@chakra-ui/react";
+import { Button, CloseButton, Dialog, Input } from "@chakra-ui/react";
 import { useState } from "react";
-import { FaAddressCard, FaRegEdit } from "react-icons/fa";
-import actualizarEmpleado from "../services/actualizarEmpleado";
+import agregarEmpleadoService from "../services/agregarEmpleadoService"
 import toast from "react-hot-toast";
 import useEmpleado from "../components/hooks/useEmpleado";
-import { CgAdd } from "react-icons/cg";
 
+function AgregarPAs() {
+  const { colaboradorObtenido, buscarEmpleado } = useEmpleado();
 
-function AgregarPAs({ anio, diasDisponibles1er, diasUtilizados1er, diasDisponibles2do, diasUtilizados2do, runEmpleado }) {
+  const [datos, setDatos] = useState({
+    runEmpleado: colaboradorObtenido.runEmpleado,
+    anio: null
+  });
+
+  const agregarEmpleado = async e => {
+    e.preventDefault();
+    const loading = toast.loading("Agregando...")
+    const response = await agregarEmpleadoService(datos)
+    console.log(datos);
+
+    const { status } = response;
+    if (status == 200) {
+      toast.success("Año agregado", { id: loading });
+      buscarEmpleado(colaboradorObtenido)
+    } else {
+      toast.error("Ha ocurrido un error", { id: loading });
+    }
+
+    console.log(response);
+  }
 
   return (
     <Dialog.Root>
@@ -21,9 +41,9 @@ function AgregarPAs({ anio, diasDisponibles1er, diasUtilizados1er, diasDisponibl
           <Dialog.Header>
             <Dialog.Title>Agregar nuevo año</Dialog.Title>
           </Dialog.Header>
-          <form>
+          <form onSubmit={agregarEmpleado}>
             <Dialog.Body>
-              <Input type="text" placeholder="2023" />  
+              <Input required onChange={e => setDatos({ ...datos, anio: e.target.value })} type="text" placeholder="2023" />
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>

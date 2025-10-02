@@ -20,10 +20,13 @@ function VerDetalleEmpleado({ anio, diasDisponibles1er, diasUtilizados1er, diasD
         e.preventDefault();
         const loading = toast.loading("Actualizando datos...");
         const response = await actualizarEmpleado(anio, datos);
+
         const { status } = response;
         if (status == 200) {
             buscarEmpleado(colaboradorObtenido);
             toast.success("Actualizado correctamente!", { id: loading })
+        } else if (status == 400) {
+            toast.error("No puedes asignar mas de 4 dias a un empleado", { id: loading })
         } else {
             toast.error("Ha ocurrido un error", { id: loading })
         }
