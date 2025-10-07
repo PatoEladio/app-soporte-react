@@ -1,8 +1,9 @@
 import { Box, Button, Heading, HStack, Input, Table } from '@chakra-ui/react';
-import useEmpleado from '../components/hooks/useEmpleado';
+import useEmpleado from '../hooks/useEmpleado';
 import { useState } from 'react';
 import VerDetalleEmpleado from '../components/VerDetalleUsuario';
 import AgregarPAs from './AgregarPAs';
+import AutoCompletarEmpleado from '../components/AutoCompletarEmpleado';
 
 function Landing() {
   const [empleado, setEmpleado] = useState({

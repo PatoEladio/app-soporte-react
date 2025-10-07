@@ -1,7 +1,7 @@
 import axios from "axios";
 
-function agregarEmpleadoService(datos) {
-  return axios.post("http://localhost:4000/agregarEmpleado", datos)
+function agregarAnioEmpleadoService(datos) {
+  return axios.post("http://localhost:4000/agregarAnioEmpleado", datos)
     .then(res => {
       return res;
     }).catch(err => {
@@ -9,4 +9,4 @@ function agregarEmpleadoService(datos) {
     })
 }
 
-export default agregarEmpleadoService
+export default agregarAnioEmpleadoService

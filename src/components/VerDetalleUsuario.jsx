@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import actualizarEmpleado from "../services/actualizarEmpleado";
 import toast from "react-hot-toast";
-import useEmpleado from "./hooks/useEmpleado";
+import useEmpleado from "../hooks/useEmpleado";
 
 function VerDetalleEmpleado({ anio, diasDisponibles1er, diasUtilizados1er, diasDisponibles2do, diasUtilizados2do, runEmpleado }) {
     const [datos, setDatos] = useState({
@@ -18,6 +18,8 @@ function VerDetalleEmpleado({ anio, diasDisponibles1er, diasUtilizados1er, diasD
 
     const onActualizarEmpleado = async (e) => {
         e.preventDefault();
+        console.log(datos);
+
         const loading = toast.loading("Actualizando datos...");
         const response = await actualizarEmpleado(anio, datos);
 
@@ -54,11 +56,11 @@ function VerDetalleEmpleado({ anio, diasDisponibles1er, diasUtilizados1er, diasD
                                 <HStack gap={4} mt={4}>
                                     <Field.Root required>
                                         <Field.Label>Dias Disponibles</Field.Label>
-                                        <Input type="number" placeholder="..." autoComplete="off" max={3} value={datos.diasPrimerSemestreDisponibles} onChange={e => setDatos({ ...datos, diasPrimerSemestreDisponibles: e.target.value })} />
+                                        <Input step={"any"} type="number" placeholder="..." autoComplete="off" max={3} value={datos.diasPrimerSemestreDisponibles} onChange={e => setDatos({ ...datos, diasPrimerSemestreDisponibles: e.target.value === "" ? "" : parseFloat(e.target.value) })} />
                                     </Field.Root>
                                     <Field.Root required>
                                         <Field.Label>Dias Utilizados</Field.Label>
-                                        <Input type="number" placeholder="..." autoComplete="off" max={3} value={datos.diasPrimerSemestreUtilizados} onChange={e => setDatos({ ...datos, diasPrimerSemestreUtilizados: e.target.value })} />
+                                        <Input step={"any"} type="number" placeholder="..." autoComplete="off" max={3} value={datos.diasPrimerSemestreUtilizados} onChange={e => setDatos({ ...datos, diasPrimerSemestreUtilizados: e.target.value === "" ? "" : parseFloat(e.target.value) })} />
                                     </Field.Root>
                                 </HStack>
                             </Box>
@@ -67,11 +69,11 @@ function VerDetalleEmpleado({ anio, diasDisponibles1er, diasUtilizados1er, diasD
                             <HStack gap={4} mt={4}>
                                 <Field.Root required>
                                     <Field.Label>Dias Disponibles</Field.Label>
-                                    <Input type="number" placeholder="..." autoComplete="off" max={3} value={datos.diasSegundoSemestreDisponibles} onChange={e => setDatos({ ...datos, diasSegundoSemestreDisponibles: e.target.value })} />
+                                    <Input step={"any"} type="number" placeholder="..." autoComplete="off" value={datos.diasSegundoSemestreDisponibles} onChange={e => setDatos({ ...datos, diasSegundoSemestreDisponibles: e.target.value === "" ? "" : parseFloat(e.target.value) })} />
                                 </Field.Root>
                                 <Field.Root required>
                                     <Field.Label>Dias Utilizados</Field.Label>
-                                    <Input type="number" placeholder="..." autoComplete="off" max={3} value={datos.diasSegundoSemestreUtilizados} onChange={e => setDatos({ ...datos, diasSegundoSemestreUtilizados: e.target.value })} />
+                                    <Input step={"any"} type="number" placeholder="..." autoComplete="off" max={3} value={datos.diasSegundoSemestreUtilizados} onChange={e => setDatos({ ...datos, diasSegundoSemestreUtilizados: e.target.value === "" ? "" : parseFloat(e.target.value) })} />
                                 </Field.Root>
                             </HStack>
                         </Dialog.Body>

@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { EmpleadoContext } from "../../context/EmpleadoContext";
+import { EmpleadoContext } from "../context/EmpleadoContext";
 import toast from "react-hot-toast";
-import obtenerEmpleadoPorRut from "../../services/obtenerEmpleadoPorRut";
+import obtenerEmpleadoPorRut from "../services/obtenerEmpleadoPorRut";
 
 function useEmpleado() {
     const { colaboradorObtenido, setColaboradorObtenido } = useContext(EmpleadoContext);

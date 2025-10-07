@@ -2,18 +2,14 @@ import { Button, CloseButton, Dialog, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import useEmpleado from "../hooks/useEmpleado";
-import agregarAnioEmpleadoService from "../services/agregarEmpleadoService";
 
-function AgregarPAs() {
+function CrearEmpleado() {
   const { colaboradorObtenido, buscarEmpleado } = useEmpleado();
 
   const [datos, setDatos] = useState({
     runEmpleado: colaboradorObtenido.runEmpleado,
     anio: null
   });
-
-  console.log(colaboradorObtenido);
-
 
   const agregarEmpleado = async e => {
     e.preventDefault();
@@ -68,4 +64,4 @@ function AgregarPAs() {
   );
 }
 
-export default AgregarPAs;
+export default CrearEmpleado;
