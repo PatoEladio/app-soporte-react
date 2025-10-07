@@ -22,8 +22,6 @@ export default function AutocompleteReactSelect() {
     });
   }
 
-  
-
   useEffect(() => {
     obtenerTodosLosEmpleados()
   }, [])

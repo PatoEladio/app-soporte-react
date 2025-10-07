@@ -22,7 +22,7 @@ function AgregarPAs() {
       runEmpleado: colaboradorObtenido.runEmpleado,
       anio: null
     })
-    const response = await agregarAnioEmpleado(datos)
+    const response = await agregarAnioEmpleadoService(datos)
     const { status } = response;
     if (status == 200) {
       toast.success("Año agregado", { id: loading });
